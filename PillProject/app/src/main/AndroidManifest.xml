@@ -40,6 +40,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="anna.course.pillproject.MainActivity" />
         </activity>
+        <activity
+            android:name=".Clock"
+            android:label="@string/title_activity_clock"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="anna.course.pillproject.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

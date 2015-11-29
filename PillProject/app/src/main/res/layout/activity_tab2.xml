@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,22 +7,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tab 2 says Hello :D"
-        android:id="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="X"
         android:textColor="@color/tabsScrollColor"
+        android:id="@+id/xText"
+        android:layout_marginTop="41dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Y"
+        android:textColor="@color/tabsScrollColor"
+        android:id="@+id/yText"
+        android:layout_below="@+id/xText"
+        android:layout_alignLeft="@+id/xText"
+        android:layout_alignStart="@+id/xText" />
 
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/my_recycler_view"
-        android:scrollbars="vertical"
-        
-        android:layout_below = "@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Z"
+        android:textColor="@color/tabsScrollColor"
+        android:id="@+id/zText"
+        android:layout_below="@+id/yText"
+        android:layout_alignLeft="@+id/yText"
+        android:layout_alignStart="@+id/yText" />
 
 
 

@@ -4,22 +4,6 @@ android:layout_width="match_parent"
 android:layout_height="match_parent">
 
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Press me to reset"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:textColor="@color/tabsScrollColor"
-        />
-
-
-
     <TextView
         android:id="@+id/askme"
         android:layout_width="fill_parent"
@@ -27,10 +11,9 @@ android:layout_height="match_parent">
         android:gravity="center"
         android:paddingBottom="10dp"
         android:text="@string/intro"
-        android:layout_above="@+id/option_1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        />
+        android:layout_below="@+id/textView" />
 
     <TextView
         android:id="@+id/option_1"
@@ -40,9 +23,10 @@ android:layout_height="match_parent">
         android:gravity="center"
         android:text="@string/option_1"
         android:textStyle="bold"
-        android:layout_above="@+id/option_2"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_below="@+id/askme"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/option_2"
@@ -52,10 +36,10 @@ android:layout_height="match_parent">
         android:gravity="center"
         android:text="@string/option_2"
         android:textStyle="bold"
-        android:layout_above="@+id/option_3"
+        android:textSize="30sp"
+        android:layout_below="@+id/option_1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="30sp"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/option_3"
@@ -65,9 +49,10 @@ android:layout_height="match_parent">
         android:gravity="center"
         android:text="@string/option_3"
         android:textStyle="bold"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_below="@+id/option_2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <TextView
@@ -77,10 +62,10 @@ android:layout_height="match_parent">
         android:background="@drawable/choice"
         android:gravity="center"
         android:text="@string/choice_1"
-        android:layout_above="@+id/choice_2"
+        android:textSize="20sp"
+        android:layout_below="@+id/spinner1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/choice_2"
@@ -89,10 +74,10 @@ android:layout_height="match_parent">
         android:background="@drawable/choice"
         android:gravity="center"
         android:text="@string/choice_2"
-        android:layout_above="@+id/choice_3"
+        android:textSize="20sp"
+        android:layout_below="@+id/choice_1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/choice_3"
@@ -101,55 +86,45 @@ android:layout_height="match_parent">
         android:background="@drawable/choice"
         android:gravity="center"
         android:text="@string/choice_3"
-        android:layout_alignParentBottom="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/choice_2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20sp"/>
+        android:layout_alignParentStart="true" />
 
-    <ImageButton
+
+
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="New CheckBox"
+        android:id="@+id/spinner1"
+        android:layout_alignTop="@+id/spinner2"
+        android:layout_toLeftOf="@+id/spinner2"
+        android:layout_toStartOf="@+id/spinner2"
+        android:layout_marginRight="57dp"
+        android:layout_marginEnd="57dp" />
+
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New CheckBox"
+        android:id="@+id/spinner2"
+        android:layout_below="@+id/option_3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="62dp"
+        android:layout_marginEnd="62dp" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/pill_blue"
+        android:text="Enter"
+        android:id="@+id/enter"
+        android:layout_below="@+id/choice_3"
+        android:layout_centerHorizontal="true"
 
-        android:contentDescription="@string/hello_world"
-
-        android:src="@drawable/circle_blue"
-        android:longClickable="true"
-        android:clickable="true"
-        android:layout_above="@+id/option_2"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pill_green"
-
-        android:contentDescription="@string/hello_world"
-
-        android:src="@drawable/circle_green"
-        android:longClickable="true"
-        android:clickable="true"
-
-
-        android:layout_below="@+id/option_1"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pill_red"
-
-        android:contentDescription="@string/hello_world"
-
-        android:src="@drawable/circle_red"
-        android:longClickable="true"
-        android:clickable="true"
-
-        android:layout_below="@+id/pill_green"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button" />
+        android:onClick="save"
+        />
 
 
 </RelativeLayout>

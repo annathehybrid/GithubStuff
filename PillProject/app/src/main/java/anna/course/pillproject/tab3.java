@@ -2,89 +2,86 @@ package anna.course.pillproject;
 
 //package samples.exoguru.materialtabs;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
-public class tab3 extends Fragment implements SensorEventListener{
 
-    private TextView xText, yText, zText;
-    private Sensor mySensor;
-    private SensorManager SM;
+public class tab3 extends Fragment {
+
+    private static final String TAG = "RecyclerViewFragment";
+    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    private static final int DATASET_COUNT = 10;
+
+    protected RecyclerView mRecyclerView;
+    protected CustomAdapter mAdapter;
+    protected RecyclerView.LayoutManager mLayoutManager;
+    protected String[] mDataset;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Initialize dataset, this data would usually come from a local content provider or
+        // remote server.
+        initDataset();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_tab3,container,false);
+        View rootView = inflater.inflate(R.layout.activity_tab3,container,false);
+        rootView.setTag(TAG);
 
 
-        // Assign TextView
-        TextView xText = (TextView)view.findViewById(R.id.xText);
-        TextView yText = (TextView)view.findViewById(R.id.yText);
-        TextView zText = (TextView)view.findViewById(R.id.zText);
+        // BEGIN_INCLUDE(initializeRecyclerView)
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
 
+        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
+        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
+        // elements are laid out.
+        mLayoutManager = new LinearLayoutManager(getActivity());
 
-        // Create our Sensor Manager
-        //SM = (SensorManager) getActivity().getSystemService(getActivity().SENSOR_SERVICE);
-        SM = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // Accelerometer Sensor
-        mySensor = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mAdapter = new CustomAdapter(mDataset);
+        // Set CustomAdapter as the adapter for RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
 
-        // Register sensor Listener
-        SM.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onActivityCreated(savedInstanceState);
-
+        return rootView;
     }
 
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            // Not in use
+
+    /**
+     * Generates Strings for RecyclerView's adapter. This data would usually come
+     * from a local content provider or remote server.
+     */
+
+
+
+    private void initDataset() {
+        mDataset = new String[DATASET_COUNT];
+
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            mDataset[i] = "This is day # " + i;
         }
 
 
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-        try {
-            TextView xText = (TextView) getView().findViewById(R.id.xText);
-            xText.setText("X: " + event.values[0]);
-
-            TextView yText = (TextView) getView().findViewById(R.id.yText);
-            yText.setText("Y: " + event.values[1]);
-
-            TextView zText = (TextView) getView().findViewById(R.id.zText);
-            zText.setText("Z: " + event.values[2]);
-        } catch(NullPointerException e) {
-            System.out.println(e.toString());
-        }
-
-
-
-
     }
-
-
 }

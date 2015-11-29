@@ -16,4 +16,33 @@
     <string name="choice_1">8 am</string>
     <string name="choice_2">10 am</string>
     <string name="choice_3">12 pm</string>
+
+    <string name="element_text">Element</string>
+    <string name="grid_layout_manager">Grid Layout Manager</string>
+    <string name="linear_layout_manager">Linear Layout Manager</string>
+    <string name="title_activity_clock">Clock</string>
+
+
+    <string-array name="months_array">
+        <item>Pick month</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="day_array">
+        <item>Pick day</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>1</item>
+        <item>2</item>
+
+
+
+    </string-array>
+
 </resources>
