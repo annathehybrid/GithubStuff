@@ -13,7 +13,8 @@ android:layout_height="match_parent">
         android:text="@string/intro"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView" />
+        />
+
 
     <TextView
         android:id="@+id/option_1"
@@ -24,33 +25,7 @@ android:layout_height="match_parent">
         android:text="@string/option_1"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:layout_below="@+id/askme"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/option_2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/option"
-        android:gravity="center"
-        android:text="@string/option_2"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_below="@+id/option_1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/option_3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/option"
-        android:gravity="center"
-        android:text="@string/option_3"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_below="@+id/option_2"
+        android:layout_below="@+id/spinner1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -63,7 +38,7 @@ android:layout_height="match_parent">
         android:gravity="center"
         android:text="@string/choice_1"
         android:textSize="20sp"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/option_1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -98,33 +73,33 @@ android:layout_height="match_parent">
         android:layout_height="100dp"
         android:text="New CheckBox"
         android:id="@+id/spinner1"
-        android:layout_alignTop="@+id/spinner2"
-        android:layout_toLeftOf="@+id/spinner2"
-        android:layout_toStartOf="@+id/spinner2"
-        android:layout_marginRight="57dp"
-        android:layout_marginEnd="57dp" />
+        android:longClickable="true"
+        android:contextClickable="true"
+        android:layout_below="@+id/askme"
+        android:layout_centerHorizontal="true" />
 
-    <Spinner
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="New CheckBox"
-        android:id="@+id/spinner2"
-        android:layout_below="@+id/option_3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="62dp"
-        android:layout_marginEnd="62dp" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter"
+        android:text="Select day"
         android:id="@+id/enter"
-        android:layout_below="@+id/choice_3"
-        android:layout_centerHorizontal="true"
 
         android:onClick="save"
-        />
+        android:layout_below="@+id/choice_3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reset everything!"
+        android:id="@+id/reset"
+        android:onClick="reset"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/enter"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

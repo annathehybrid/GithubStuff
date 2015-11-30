@@ -9,6 +9,7 @@ package anna.course.pillproject;
         import android.os.Bundle;
         import android.support.annotation.Nullable;
         import android.support.v4.app.Fragment;
+        import android.support.v4.app.FragmentTransaction;
         import android.util.Log;
         import android.view.DragEvent;
         import android.view.LayoutInflater;
@@ -27,28 +28,30 @@ public class tab1 extends Fragment {
 
     private TextView option1, option2, option3, choice1, choice2, choice3;
     private ImageButton pill_blue, pill_green, pill_red;
-    private Spinner spinner_month, spinner_day;
+    private Spinner spinner_day;
     private Button enter;
+    private String pill_first = "";
+    private String current_day;
+    private int flag = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.activity_tab1, container, false);
 
-
         //views to drag
-        TextView option1 = (TextView) view.findViewById(R.id.option_1);
-        TextView option2 = (TextView) view.findViewById(R.id.option_2);
-        TextView option3 = (TextView) view.findViewById(R.id.option_3);
+        final TextView option1 = (TextView) view.findViewById(R.id.option_1);
+        //TextView option2 = (TextView) view.findViewById(R.id.option_2);
+        //TextView option3 = (TextView) view.findViewById(R.id.option_3);
 
         //set touch listeners
         option1.setOnTouchListener(new ChoiceTouchListener());
-        option2.setOnTouchListener(new ChoiceTouchListener());
-        option3.setOnTouchListener(new ChoiceTouchListener());
+        //option2.setOnTouchListener(new ChoiceTouchListener());
+        //option3.setOnTouchListener(new ChoiceTouchListener());
 
         //views to drop onto
-        TextView choice1 = (TextView) view.findViewById(R.id.choice_1);
-        TextView choice2 = (TextView) view.findViewById(R.id.choice_2);
-        TextView choice3 = (TextView) view.findViewById(R.id.choice_3);
+        final TextView choice1 = (TextView) view.findViewById(R.id.choice_1);
+        final TextView choice2 = (TextView) view.findViewById(R.id.choice_2);
+        final TextView choice3 = (TextView) view.findViewById(R.id.choice_3);
 
         //set drag listeners
         choice1.setOnDragListener(new ChoiceDragListener());
@@ -56,73 +59,172 @@ public class tab1 extends Fragment {
         choice3.setOnDragListener(new ChoiceDragListener());
 
 
-        final Spinner spinner_month = (Spinner) view.findViewById(R.id.spinner1);
+        final Spinner spinner_day = (Spinner) view.findViewById(R.id.spinner1);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.months_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getActivity(), R.array.days_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner_month.setAdapter(adapter1);
+        spinner_day.setAdapter(adapter1);
 
-        final Spinner spinner_day = (Spinner) view.findViewById(R.id.spinner2);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.day_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner_day.setAdapter(adapter2);
+
+
+        //int selected_day = spinner_day.getSelectedItemPosition();
+
 
         final Button enter_button = (Button) view.findViewById(R.id.enter);
+            enter_button.setOnClickListener(new View.OnClickListener() {
 
-
-
-        enter_button.setOnClickListener(new View.OnClickListener() {
-
-            Spinner spinner_month = (Spinner) view.findViewById(R.id.spinner1);
-            Spinner spinner_day = (Spinner) view.findViewById(R.id.spinner2);
 
             @Override
             public void onClick(View v) {
 
 
-                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-
-                SharedPreferences.Editor editor = sharedPref.edit();
-
-                int selected_month_int = spinner_month.getSelectedItemPosition();
                 int selected_day = spinner_day.getSelectedItemPosition();
+                spinner_day.setSelection(selected_day);
 
-                String selected_month = "A random month";
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("Settings", 0);
+                final SharedPreferences.Editor editor = sharedPref.edit();
 
-                if (selected_month_int == 1) {
-                    selected_month = "November";
+                if (selected_day == 0) {
+                    //editor.putString("none", pill_first);
+                    current_day = "none-day";
+                    editor.putString("current_day", "non-day");
                 }
-                if (selected_month_int == 2) {
-                    selected_month = "December";
+                if (selected_day == 1) {
+                    current_day = "Monday";
+                    editor.putString("current_day", "Monday");
+                }
+                if (selected_day == 2) {
+                    current_day = "Tuesday";
+                    editor.putString("current_day", "Tuesday");
+                }
+                if (selected_day == 3) {
+                    current_day = "Wednesday";
+                    editor.putString("current_day", "Wednesday");
+                }
+                if (selected_day == 4) {
+                    current_day = "Thursday";
+                    editor.putString("current_day", "Thursday");
+                }
+                if (selected_day == 5) {
+                    current_day = "Friday";
+                    editor.putString("current_day", "Friday");
+                }
+                if (selected_day == 6) {
+                    editor.putString("day", "Saturday");
+                    current_day = "Saturday";
+                    editor.putString("current_day", "Saturday");
+                }
+                if (selected_day == 7) {
+                    current_day = "Sunday";
+                    editor.putString("current_day", "Sunday");
                 }
 
-                // reset Spinnersg
-                spinner_month.setSelection(0);
+                Log.e("logging the adapter", current_day);
+
+
+                if (current_day .equals("Monday") ) {
+                    editor.putString("Monday", pill_first);
+                }
+                if (current_day .equals("Tuesday") ) {
+                    editor.putString("Tuesday", pill_first);
+                }
+                if (current_day .equals("Wednesday") ) {
+                    editor.putString("Wednesday", pill_first);
+                }
+                if (current_day .equals("Thursday") ) {
+                    editor.putString("Thursday", pill_first);
+                }
+                if (current_day .equals("Friday") ) {
+                    editor.putString("Friday", pill_first);
+                }
+                if (current_day .equals("Saturday") ) {
+                    editor.putString("Saturday", pill_first);
+                }
+                if (current_day .equals("Sunday") ) {
+                    editor.putString("Sunday", pill_first);
+                }
+                if (current_day .equals("none-day") ) {
+                    editor.putString("none-day", pill_first);
+                }
+
+                Log.e("logging the pill first", pill_first);
+                editor.commit();
+
+                // reset Spinners
+                spinner_day.setSelection(selected_day);
+
+                // reset flags
+                pill_first = "";
+                flag = 1;
+
+                //views to drag
+
+                option1.setVisibility(TextView.VISIBLE);
+
+                choice1.setText("8 am");
+                choice2.setText("10 am");
+                choice3.setText("12 pm");
+
+                choice1.setTypeface(Typeface.DEFAULT);
+                choice2.setTypeface(Typeface.DEFAULT);
+                choice3.setTypeface(Typeface.DEFAULT);
+
+            }
+        });
+
+
+        final Button reset_button = (Button) view.findViewById(R.id.reset);
+        reset_button.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("Settings", 0);
+                final SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putString("Monday", "totally didn't take a pill");
+                editor.putString("Tuesday", "totally didn't take a pill");
+                editor.putString("Wednesday", "totally didn't take a pill");
+                editor.putString("Thursday", "totally didn't take a pill");
+                editor.putString("Friday", "totally didn't take a pill");
+                editor.putString("Saturday", "totally didn't take a pill");
+                editor.putString("Saturday", "totally didn't take a pill");
+                editor.putString("Sunday", "totally didn't take a pill");
+
+                Log.e("clearing verything", "done");
+                editor.commit();
+
+
                 spinner_day.setSelection(0);
 
-                String both = selected_month + "_" + selected_day;
+                // reset flags
+                pill_first = "";
+                flag = 0;
 
-                editor.putInt(both, selected_day);
-                Log.e("logging the adapter", both);
-                editor.apply();
+                //views to drag
+
+                option1.setVisibility(TextView.VISIBLE);
+
+                choice1.setText("8 am");
+                choice2.setText("10 am");
+                choice3.setText("12 pm");
+
+                choice1.setTypeface(Typeface.DEFAULT);
+                choice2.setTypeface(Typeface.DEFAULT);
+                choice3.setTypeface(Typeface.DEFAULT);
 
 
             }
         });
 
-        int pill_first = 0;
-        int pill_second = 0;
-        int pill_third = 0;
-
-
         return view;
 
     }
+
 
 
 
@@ -171,6 +273,10 @@ public class tab1 extends Fragment {
                     //stop displaying the view where it was before it was dragged
                     view.setVisibility(View.INVISIBLE);
 
+                    if (flag == 1) {
+                        view.setVisibility(View.VISIBLE);
+                    }
+
                     //view dragged item is being dropped on
                     TextView dropTarget = (TextView) v;
 
@@ -188,6 +294,26 @@ public class tab1 extends Fragment {
 
                     //make it bold to highlight the fact that an item has been dropped
                     dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
+
+                    Log.e("dropTarget1", dropTarget.getText().toString());
+                    Log.e("dropTarget2", dropped.getText().toString());
+
+                    String check_dropTarget_text = dropTarget.getText().toString();
+
+                    pill_first = "3 pm";
+
+                    if (check_dropTarget_text.toLowerCase().contains("8 am")) {
+                        pill_first = "8 am";
+                        Log.e("yes 8 am ", "to fiber");
+                    }
+                    if (check_dropTarget_text.toLowerCase().contains("10 am")) {
+                        pill_first = "10 am";
+                        Log.e("yes 10 am ", "to fiber");
+                    }
+                    if (check_dropTarget_text.toLowerCase().contains("12 pm")) {
+                        pill_first = "12 pm";
+                        Log.e("yes 12 pm ", "to fiber");
+                    }
 
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:

@@ -1,8 +1,5 @@
 package anna.course.pillproject;
 
-/**
- * Created by axu1 on 11/28/2015.
- */
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -41,9 +38,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             tab3 tab3 = new tab3();
             return tab3;
         }
-
-
-
     }
 
     // This method return the titles for the Tabs in the Tab Strip

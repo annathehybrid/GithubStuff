@@ -9,7 +9,7 @@
 
     <string name="intro">Place these things in the time slot you like</string>
 
-    <string name="option_1">Aspirin</string>
+    <string name="option_1">Fiber gummy</string>
     <string name="option_2">Acetaminophen</string>
     <string name="option_3">Ibupropfen</string>
 
@@ -29,17 +29,15 @@
         <item>December</item>
     </string-array>
 
-    <string-array name="day_array">
+    <string-array name="days_array">
         <item>Pick day</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
-        <item>30</item>
-        <item>31</item>
-        <item>1</item>
-        <item>2</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
 
 
 
