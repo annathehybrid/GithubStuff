@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/askme"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:text="@string/intro"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+    <TextView
+        android:id="@+id/option_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/holo_green_light"
+        android:text="@string/option_1"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_below="@+id/spinner1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/choice_1"
+        android:layout_marginTop="40dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choice"
+        android:gravity="center"
+        android:text="@string/choice_1"
+        android:textSize="20sp"
+        android:layout_below="@+id/option_1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/choice_2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choice"
+        android:gravity="center"
+        android:text="@string/choice_2"
+        android:textSize="20sp"
+        android:layout_below="@+id/choice_1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/choice_3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choice"
+        android:gravity="center"
+        android:text="@string/choice_3"
+        android:textSize="20sp"
+        android:layout_below="@+id/choice_2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="New CheckBox"
+        android:id="@+id/spinner1"
+        android:longClickable="true"
+        android:contextClickable="true"
+        android:layout_below="@+id/askme"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter values"
+        android:id="@+id/enter"
+
+        android:onClick="save"
+        android:layout_below="@+id/choice_3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reset everything!"
+        android:id="@+id/reset"
+        android:onClick="reset"
+        android:layout_below="@+id/enter"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/drag_me"
+        android:src="@drawable/drag_me"
+        android:layout_below="@+id/spinner1"
+        android:layout_toLeftOf="@+id/spinner1"
+        android:layout_toStartOf="@+id/spinner1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Drag me"
+        android:id="@+id/textView2"
+        android:layout_alignBaseline="@+id/option_1"
+        android:layout_alignBottom="@+id/option_1"
+        android:layout_toRightOf="@+id/reset"
+        android:layout_toEndOf="@+id/reset" />
+
+
+</RelativeLayout>
