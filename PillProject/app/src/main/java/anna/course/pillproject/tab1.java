@@ -181,14 +181,14 @@ public class tab1 extends Fragment {
                 SharedPreferences sharedPref = getActivity().getSharedPreferences("Settings", 0);
                 final SharedPreferences.Editor editor = sharedPref.edit();
 
-                editor.putString("Monday", "nope");
-                editor.putString("Tuesday", "nope");
-                editor.putString("Wednesday", "nope");
-                editor.putString("Thursday", "nope");
-                editor.putString("Friday", "nope");
-                editor.putString("Saturday", "nope");
-                editor.putString("Saturday", "nope");
-                editor.putString("Sunday", "nope");
+                editor.putString("Monday", "NONE");
+                editor.putString("Tuesday", "NONE");
+                editor.putString("Wednesday", "NONE");
+                editor.putString("Thursday", "NONE");
+                editor.putString("Friday", "NONE");
+                editor.putString("Saturday", "NONE");
+                editor.putString("Saturday", "NONE");
+                editor.putString("Sunday", "NONE");
 
                 Log.e("clearing very thing", "done");
                 editor.apply();

@@ -29,7 +29,9 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
@@ -205,6 +207,66 @@ public class tab3 extends Fragment implements SensorEventListener{
                 flag = 1;
             }
         });
+
+        final Button analyze_me = (Button) view.findViewById(R.id.analyze_me);
+
+        analyze_me.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+
+                ArrayList<Integer> array_list = new ArrayList<Integer>();
+
+                SharedPreferences sharedPref_pedometer = getActivity().getSharedPreferences("Settings_Pedometer", 0);
+
+                Integer eight_oclock = sharedPref_pedometer.getInt("eight_oclock", 0);
+                Integer nine_oclock = sharedPref_pedometer.getInt("nine_oclock", 0);
+                Integer ten_oclock = sharedPref_pedometer.getInt("ten_oclock", 0);
+                Integer eleven_oclock = sharedPref_pedometer.getInt("eleven_oclock", 0);
+                Integer twelve_oclock = sharedPref_pedometer.getInt("twelve_oclock", 0);
+                Integer thirteen_oclock = sharedPref_pedometer.getInt("thirteen_oclock", 0);
+                Integer fourteen_oclock = sharedPref_pedometer.getInt("fourteen_oclock", 0);
+                Integer fifteen_oclock = sharedPref_pedometer.getInt("fifteen_oclock", 0);
+
+
+                array_list.add(eight_oclock);
+                array_list.add(nine_oclock);
+                array_list.add(ten_oclock);
+                array_list.add(eleven_oclock);
+                array_list.add(twelve_oclock);
+                array_list.add(thirteen_oclock);
+                array_list.add(fifteen_oclock);
+                array_list.add(fourteen_oclock);
+
+
+                int minIndex = array_list.indexOf(Collections.min(array_list));
+
+                TextView count = (TextView) getView().findViewById(R.id.your_analysis);
+                if (minIndex < 10) {
+
+                    //count.setText(String.valueOf(event.values[0]));
+                    count.setText("You don't move very much, so it looks like 8 am is best.");
+                }
+                else if (minIndex > 10 && minIndex <30) {
+
+                    for (Integer s : array_list) {
+                        if (s == minIndex) {
+                            count.setText("You should take your pill at " + s + " o'clock");
+                        }
+                        Log.e("algorithm", "done");
+                    }
+                }
+                else {
+                    count.setText("It looks like you're too busy to take pills ...");
+                }
+
+
+
+            }
+        });
+
 
         return view;
 

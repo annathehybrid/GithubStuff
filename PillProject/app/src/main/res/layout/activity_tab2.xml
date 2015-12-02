@@ -19,7 +19,9 @@
         android:text="Want to know the best time to take your pill?"
         android:id="@+id/analyze_me"
         android:layout_below="@+id/graph"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="analyze_me"
+        />
 
     <TextView
         android:layout_width="wrap_content"
