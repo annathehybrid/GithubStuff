@@ -7,7 +7,7 @@
     <string name="title_activity_tab2">Enter</string>
     <string name="title_activity_tab3">Track</string>
 
-    <string name="intro">Place these things in the time slot you like</string>
+    <string name="intro">Place the fiber gummy in the time slot you like</string>
 
     <string name="option_1">Fiber gummy</string>
     <string name="option_2">Acetaminophen</string>
@@ -38,9 +38,11 @@
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>
-
-
-
     </string-array>
+
+    <string name="step_counter">android.hardware.sensor.stepcounter</string>
+    <string name="step_detector">android.hardware.sensor.stepdetector</string>
+
+
 
 </resources>

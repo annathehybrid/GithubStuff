@@ -2,26 +2,28 @@ package anna.course.pillproject;
 
 //package samples.exoguru.materialtabs;
 
-        import android.content.ClipData;
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.graphics.Typeface;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentTransaction;
-        import android.util.Log;
-        import android.view.DragEvent;
-        import android.view.LayoutInflater;
-        import android.view.MotionEvent;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.ImageButton;
-        import android.widget.Spinner;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.content.ClipData;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 
 
 public class tab1 extends Fragment {
@@ -40,13 +42,9 @@ public class tab1 extends Fragment {
 
         //views to drag
         final TextView option1 = (TextView) view.findViewById(R.id.option_1);
-        //TextView option2 = (TextView) view.findViewById(R.id.option_2);
-        //TextView option3 = (TextView) view.findViewById(R.id.option_3);
 
         //set touch listeners
         option1.setOnTouchListener(new ChoiceTouchListener());
-        //option2.setOnTouchListener(new ChoiceTouchListener());
-        //option3.setOnTouchListener(new ChoiceTouchListener());
 
         //views to drop onto
         final TextView choice1 = (TextView) view.findViewById(R.id.choice_1);
@@ -66,10 +64,6 @@ public class tab1 extends Fragment {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner_day.setAdapter(adapter1);
-
-
-
-        //int selected_day = spinner_day.getSelectedItemPosition();
 
 
         final Button enter_button = (Button) view.findViewById(R.id.enter);
@@ -157,11 +151,14 @@ public class tab1 extends Fragment {
 
                 // reset flags
                 pill_first = "";
-                flag = 1;
 
                 //views to drag
 
-                option1.setVisibility(TextView.VISIBLE);
+                if (flag == 1) {
+                    option1.setVisibility(TextView.VISIBLE);
+                }
+
+                flag = 0;
 
                 choice1.setText("8 am");
                 choice2.setText("10 am");
@@ -178,36 +175,33 @@ public class tab1 extends Fragment {
         final Button reset_button = (Button) view.findViewById(R.id.reset);
         reset_button.setOnClickListener(new View.OnClickListener() {
 
-
             @Override
             public void onClick(View v) {
-
 
                 SharedPreferences sharedPref = getActivity().getSharedPreferences("Settings", 0);
                 final SharedPreferences.Editor editor = sharedPref.edit();
 
-                editor.putString("Monday", "totally didn't take a pill");
-                editor.putString("Tuesday", "totally didn't take a pill");
-                editor.putString("Wednesday", "totally didn't take a pill");
-                editor.putString("Thursday", "totally didn't take a pill");
-                editor.putString("Friday", "totally didn't take a pill");
-                editor.putString("Saturday", "totally didn't take a pill");
-                editor.putString("Saturday", "totally didn't take a pill");
-                editor.putString("Sunday", "totally didn't take a pill");
+                editor.putString("Monday", "nope");
+                editor.putString("Tuesday", "nope");
+                editor.putString("Wednesday", "nope");
+                editor.putString("Thursday", "nope");
+                editor.putString("Friday", "nope");
+                editor.putString("Saturday", "nope");
+                editor.putString("Saturday", "nope");
+                editor.putString("Sunday", "nope");
 
-                Log.e("clearing verything", "done");
-                editor.commit();
-
+                Log.e("clearing very thing", "done");
+                editor.apply();
 
                 spinner_day.setSelection(0);
 
                 // reset flags
                 pill_first = "";
-                flag = 0;
+
 
                 //views to drag
-
                 option1.setVisibility(TextView.VISIBLE);
+                flag = 0;
 
                 choice1.setText("8 am");
                 choice2.setText("10 am");
@@ -224,9 +218,6 @@ public class tab1 extends Fragment {
         return view;
 
     }
-
-
-
 
 
     private final class ChoiceTouchListener implements View.OnTouchListener {
@@ -273,9 +264,7 @@ public class tab1 extends Fragment {
                     //stop displaying the view where it was before it was dragged
                     view.setVisibility(View.INVISIBLE);
 
-                    if (flag == 1) {
-                        view.setVisibility(View.VISIBLE);
-                    }
+                    flag = 1;
 
                     //view dragged item is being dropped on
                     TextView dropTarget = (TextView) v;

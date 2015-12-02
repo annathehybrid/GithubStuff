@@ -1,5 +1,7 @@
 package anna.course.pillproject;
 
+
+
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,32 +15,27 @@ import android.widget.TextView;
  */
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
+
     private String[] mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        // each data item is just a string in this case
         private final TextView textView;
+
+
         public ViewHolder(View v) {
             super(v);
-            textView = (TextView) v.findViewById(R.id.textView);
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getPosition() + " clicked.");
-
                 }
             });
-
+            textView = (TextView) v.findViewById(R.id.textView);
         }
 
         public TextView getTextView() {
@@ -47,8 +44,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
 
-
-    // Provide a suitable constructor (depends on the kind of dataset)
     /**
      * Initialize the dataset of the Adapter.
      *
@@ -58,9 +53,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         mDataSet = dataSet;
     }
 
-
-
-    // Create new views (invoked by the layout manager)
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
     // Create new views (invoked by the layout manager)
     @Override
@@ -72,8 +64,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
+    // END_INCLUDE(recyclerViewOnCreateViewHolder)
 
+    // BEGIN_INCLUDE(recyclerViewOnBindViewHolder)
     // Replace the contents of a view (invoked by the layout manager)
+
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Log.d(TAG, "Element " + position + " set.");
@@ -83,6 +78,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTextView().setText(mDataSet[position]);
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
+
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
